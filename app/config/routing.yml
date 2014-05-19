@@ -1,0 +1,5 @@
+zerodine_make_someone_happy:
+    resource: "@ZerodineMakeSomeoneHappyBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
