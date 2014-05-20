@@ -1,0 +1,27 @@
+<?php
+
+namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+class GroupController extends Controller
+{
+    /**
+     * @Route("/")
+     * @Template()
+     */
+    public function indexAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/add", name="group_add")
+     * @Template()
+     */
+    public function addAction() {
+        return array();
+    }
+}
