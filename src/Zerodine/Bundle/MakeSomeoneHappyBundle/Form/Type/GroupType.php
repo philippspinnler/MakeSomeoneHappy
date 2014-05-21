@@ -17,6 +17,6 @@ class GroupType extends AbstractType
 
     public function getName()
     {
-        return 'task';
+        return 'group';
     }
 }
