@@ -4,7 +4,7 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class GroupType extends AbstractType
+class CircleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -17,6 +17,6 @@ class GroupType extends AbstractType
 
     public function getName()
     {
-        return 'group';
+        return 'circle';
     }
 }

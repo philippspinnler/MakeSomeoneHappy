@@ -3,12 +3,13 @@
 namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="group")
+ * @ORM\Table(name="circle")
  */
-class Group {
+class Circle {
     /**
      * @ORM\Column(type="guid")
      * @ORM\Id
@@ -18,16 +19,19 @@ class Group {
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     protected $alias;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     protected $password;
 

@@ -43,10 +43,10 @@ class Person {
     protected $partner;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Group")
-     * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Circle")
+     * @ORM\JoinColumn(name="circle_id", referencedColumnName="id")
      */
-    protected $group;
+    protected $circle;
 
     /**
      * @param mixed $child
@@ -65,19 +65,19 @@ class Person {
     }
 
     /**
-     * @param mixed $group
+     * @param mixed $circle
      */
-    public function setGroup($group)
+    public function setGroup($circle)
     {
-        $this->group = $group;
+        $this->circle = $circle;
     }
 
     /**
      * @return mixed
      */
-    public function getGroup()
+    public function getCircle()
     {
-        return $this->group;
+        return $this->circle;
     }
 
     /**
