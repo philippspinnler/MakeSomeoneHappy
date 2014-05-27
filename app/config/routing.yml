@@ -1,5 +1,13 @@
 zerodine_make_someone_happy:
     resource: "@ZerodineMakeSomeoneHappyBundle/Controller/"
     type:     annotation
-    prefix:   /
 
+login_check:
+    path: /login_check
+
+logout:
+    path:   /logout
+
+_index:
+    path:   /
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Default:index }

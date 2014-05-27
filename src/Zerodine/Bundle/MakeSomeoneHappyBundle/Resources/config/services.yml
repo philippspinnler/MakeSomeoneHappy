@@ -1,0 +1,7 @@
+services:
+    person.subscriber:
+        class: Zerodine\Bundle\MakeSomeoneHappyBundle\EventListener\PersonSubscriber
+        calls:
+            - [ setEncoderFactory, [@security.encoder_factory] ]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
