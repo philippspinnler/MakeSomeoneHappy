@@ -8,18 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Circle;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\CircleType;
 use Symfony\Component\HttpFoundation\Request;
+use Zerodine\Bundle\MakeSomeoneHappyBundle\KernelListener\CircleListenerInterface;
 
+/**
+ * @Route("/circle")
+ */
 class CircleController extends Controller
 {
-    /**
-     * @Route("/")
-     * @Template()
-     */
-    public function indexAction()
-    {
-        return array();
-    }
-
     /**
      * @Route("/add", name="circle_add")
      * @Template()
@@ -40,5 +35,31 @@ class CircleController extends Controller
         return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:add.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @Route("/")
+     * @Template()
+     */
+    public function listAction()
+    {
+        $circles = $this->getDoctrine()
+            ->getRepository('ZerodineMakeSomeoneHappyBundle:Circle')
+            ->findAll();
+
+        return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:list.html.twig', array('circles' => $circles));
+    }
+
+    /**
+     * @Route("/{circleAlias}")
+     * @Template()
+     */
+    public function viewAction($circleAlias)
+    {
+        $circle = $this->getDoctrine()
+            ->getRepository('ZerodineMakeSomeoneHappyBundle:Circle')
+            ->findOneByAlias($circleAlias);
+
+        return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:view.html.twig', array('circle' => $circle));
     }
 }
