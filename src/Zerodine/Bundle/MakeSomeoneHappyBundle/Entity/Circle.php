@@ -2,6 +2,7 @@
 
 namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -30,10 +31,18 @@ class Circle {
     protected $alias;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
+     * @ORM\Column(type="text")
      */
-    protected $password;
+    protected $description;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Person", mappedBy="circles")
+     */
+    protected $persons;
+
+    public function __construct() {
+        $this->persons = new ArrayCollection();
+    }
 
     /**
      * @param mixed $alias
@@ -84,18 +93,18 @@ class Circle {
     }
 
     /**
-     * @param mixed $password
+     * @param mixed $description
      */
-    public function setPassword($password)
+    public function setDescription($description)
     {
-        $this->password = $password;
+        $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getPassword()
+    public function getDescription()
     {
-        return $this->password;
+        return $this->description;
     }
 }
