@@ -10,8 +10,8 @@ class PersonType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('email', 'email');
         $builder->add('name', 'text');
+        $builder->add('email', 'email');
         $builder->add('plainPassword', 'repeated', array(
             'first_name'  => 'password',
             'second_name' => 'confirm',

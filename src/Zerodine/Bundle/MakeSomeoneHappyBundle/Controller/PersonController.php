@@ -44,7 +44,7 @@ class PersonController extends Controller {
 
     /**
      * @Route("/add")
-     * @Route("/register")
+     * @Route("/register", name="register")
      */
     public function registerAction(Request $request)
     {
