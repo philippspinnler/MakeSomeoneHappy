@@ -36,7 +36,7 @@ class Circle {
     protected $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="circles")
+     * @ORM\ManyToMany(targetEntity="Person", inversedBy="circles")
      */
     protected $persons;
 
@@ -106,5 +106,13 @@ class Circle {
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersons()
+    {
+        return $this->persons;
     }
 }

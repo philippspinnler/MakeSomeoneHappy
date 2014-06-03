@@ -1,13 +1,23 @@
-zerodine_make_someone_happy:
-    resource: "@ZerodineMakeSomeoneHappyBundle/Controller/"
-    type:     annotation
+#zerodine_make_someone_happy:
+#    resource: "@ZerodineMakeSomeoneHappyBundle/Controller/"
+#    type:     annotation
 
-login_check:
-    path: /login_check
+users:
+    type:     rest
+    prefix: /api
+    resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\PersonController
 
-logout:
-    path:   /logout
+circles:
+    type:     rest
+    prefix: /api
+    resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\CircleController
 
-_index:
-    path:   /
-    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Default:index }
+#login_check:
+#    path: /login_check
+
+#logout:
+#    path:   /logout
+
+#_index:
+#    path:   /
+#    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Default:index }

@@ -19,6 +19,8 @@ class AppKernel extends Kernel
 
             new Zerodine\Bundle\MakeSomeoneHappyBundle\ZerodineMakeSomeoneHappyBundle(),
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

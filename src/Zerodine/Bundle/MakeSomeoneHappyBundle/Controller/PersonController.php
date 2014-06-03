@@ -9,6 +9,7 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\PersonType;
+use FOS\RestBundle\Controller\Annotations\View;
 
 /**
  * @Route("/person")
@@ -70,5 +71,25 @@ class PersonController extends Controller {
         return $this->render('ZerodineMakeSomeoneHappyBundle:Person:add.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    /**
+     * @return array
+     * @View()
+     */
+    public function getPersonsAction() {
+        $persons = $this->getDoctrine()->getRepository('ZerodineMakeSomeoneHappyBundle:Person')
+            ->findAll();
+
+        return array('persons' => $persons);
+    }
+
+    /**
+     * @param Person $person
+     * @return array
+     * @View()
+     */
+    public function getPersonAction(Person $person) {
+        return array('person' => $person);
     }
 }

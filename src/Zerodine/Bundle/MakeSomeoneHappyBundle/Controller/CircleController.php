@@ -2,6 +2,7 @@
 
 namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Controller;
 
+use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -61,5 +62,16 @@ class CircleController extends Controller
             ->findOneByAlias($circleAlias);
 
         return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:view.html.twig', array('circle' => $circle));
+    }
+
+    /**
+     * @return array
+     * @View()
+     */
+    public function getCirclesAction() {
+        $circles = $this->getDoctrine()->getRepository('ZerodineMakeSomeoneHappyBundle:Circle')
+            ->findAll();
+
+        return array('circles' => $circles);
     }
 }

@@ -8,12 +8,15 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="person")
  * @UniqueEntity(fields="email", message="Email already taken")
  * @ORM\HasLifecycleCallbacks()
+ * @ExclusionPolicy("none")
  */
 class Person implements AdvancedUserInterface, \Serializable {
     /**
@@ -37,16 +40,18 @@ class Person implements AdvancedUserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="text")
+     * @Exclude()
      */
     protected $keyPublic;
 
     /**
      * @ORM\Column(type="text")
+     * @Exclude()
      */
     protected $keyPrivate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Circle", inversedBy="persons")
+     * @ORM\ManyToMany(targetEntity="Circle", mappedBy="persons")
      */
     protected $circles;
 
@@ -58,9 +63,14 @@ class Person implements AdvancedUserInterface, \Serializable {
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Exclude()
      */
     protected $password;
 
+    /**
+     * @var
+     * @Exclude()
+     */
     protected $plainPassword;
 
     public function __construct() {
@@ -71,9 +81,9 @@ class Person implements AdvancedUserInterface, \Serializable {
     /**
      * @return mixed
      */
-    public function getCircle()
+    public function getCircles()
     {
-        return $this->circle;
+        return $this->circles;
     }
 
     /**
@@ -348,5 +358,9 @@ class Person implements AdvancedUserInterface, \Serializable {
             $this->email,
             $this->id
             ) = $data;
+    }
+
+    public function __toString() {
+        return $this->name;
     }
 }

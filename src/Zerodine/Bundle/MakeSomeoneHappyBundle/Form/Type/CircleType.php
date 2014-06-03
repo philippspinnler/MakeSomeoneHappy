@@ -11,7 +11,13 @@ class CircleType extends AbstractType
         $builder
             ->add('name')
             ->add('alias')
-            ->add('password', 'password')
+            ->add('description')
+            ->add('persons', 'entity', array(
+                'class' => 'Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person',
+                'property' => 'name',
+                'multiple' => true,
+                'expanded' => true
+            ))
             ->add('save', 'submit');
     }
 
