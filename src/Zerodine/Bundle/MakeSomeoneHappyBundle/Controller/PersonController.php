@@ -11,14 +11,8 @@ use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\PersonType;
 use FOS\RestBundle\Controller\Annotations\View;
 
-/**
- * @Route("/person")
- */
 class PersonController extends Controller {
 
-    /**
-     * @Route("/login", name="login")
-     */
     public function loginAction(Request $request)
     {
         $session = $request->getSession();
@@ -43,10 +37,6 @@ class PersonController extends Controller {
         );
     }
 
-    /**
-     * @Route("/add")
-     * @Route("/register", name="register")
-     */
     public function registerAction(Request $request)
     {
         $person = new Person();
@@ -68,8 +58,15 @@ class PersonController extends Controller {
             $em->flush();
         }
 
-        return $this->render('ZerodineMakeSomeoneHappyBundle:Person:add.html.twig', array(
+        return $this->render('ZerodineMakeSomeoneHappyBundle:Person:register.html.twig', array(
             'form' => $form->createView(),
+        ));
+    }
+
+    public function indexAction() {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+
+        return $this->render('ZerodineMakeSomeoneHappyBundle:Person:index.html.twig', array(
         ));
     }
 
@@ -90,6 +87,15 @@ class PersonController extends Controller {
      * @View()
      */
     public function getPersonAction(Person $person) {
+        // generate oauth client
+
+        /*$clientManager = $this->get('fos_oauth_server.client_manager.default');
+        $client = $clientManager->createClient();
+        $client->setRedirectUris(array('http://localhost/work/makesomeonehappy_ui'));
+        $client->setAllowedGrantTypes(array('token', 'authorization_code'));
+        $clientManager->updateClient($client);
+        */
+
         return array('person' => $person);
     }
 }

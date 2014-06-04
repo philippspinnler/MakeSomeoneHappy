@@ -11,15 +11,9 @@ use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\CircleType;
 use Symfony\Component\HttpFoundation\Request;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\KernelListener\CircleListenerInterface;
 
-/**
- * @Route("/circle")
- */
 class CircleController extends Controller
 {
-    /**
-     * @Route("/add", name="circle_add")
-     * @Template()
-     */
+    /*
     public function addAction(Request $request) {
         $circle = new Circle();
 
@@ -37,32 +31,7 @@ class CircleController extends Controller
             'form' => $form->createView(),
         ));
     }
-
-    /**
-     * @Route("/")
-     * @Template()
-     */
-    public function listAction()
-    {
-        $circles = $this->getDoctrine()
-            ->getRepository('ZerodineMakeSomeoneHappyBundle:Circle')
-            ->findAll();
-
-        return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:list.html.twig', array('circles' => $circles));
-    }
-
-    /**
-     * @Route("/{circleAlias}")
-     * @Template()
-     */
-    public function viewAction($circleAlias)
-    {
-        $circle = $this->getDoctrine()
-            ->getRepository('ZerodineMakeSomeoneHappyBundle:Circle')
-            ->findOneByAlias($circleAlias);
-
-        return $this->render('ZerodineMakeSomeoneHappyBundle:Circle:view.html.twig', array('circle' => $circle));
-    }
+    */
 
     /**
      * @return array

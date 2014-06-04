@@ -5,3 +5,19 @@ services:
             - [ setEncoderFactory, [@security.encoder_factory] ]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+
+    platform.person.manager:
+        class: "Doctrine\ORM\EntityManager"
+        arguments: [ "%platform.entity.person.class%" ]
+        factory_service:  doctrine
+        factory_method: getManagerForClass
+
+    platform.person.repository:
+        class: "Zerodine\Bundle\MakeSomeoneHappyBundle\Repository\PersonRepository"
+        arguments: [ "%platform.entity.person.class%" ]
+        factory_service:  platform.person.manager
+        factory_method: getRepository
+
+    platform.person.provider:
+        class: "%platform.person.provider.class%"
+        arguments: [ "@platform.person.repository" ]

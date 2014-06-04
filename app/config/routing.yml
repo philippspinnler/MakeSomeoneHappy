@@ -1,6 +1,8 @@
-#zerodine_make_someone_happy:
-#    resource: "@ZerodineMakeSomeoneHappyBundle/Controller/"
-#    type:     annotation
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
 users:
     type:     rest
@@ -12,12 +14,27 @@ circles:
     prefix: /api
     resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\CircleController
 
-#login_check:
-#    path: /login_check
+login_check:
+    path: /login_check
 
-#logout:
-#    path:   /logout
+logout:
+    path:   /logout
 
-#_index:
-#    path:   /
-#    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Default:index }
+login:
+    path:   /login
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:login }
+
+register:
+    path:   /register
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:register }
+
+index:
+    path:   /
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:index }
+
+# /usr/bin/php /Users/philipp/workspace/work/makesomeonehappy/app/console zerodine:oauth-server:client:create --redirect-uri=http://localhost:8080/ --grant-type=authorization_code --grant-type=password --grant-type=refresh_token --grant-type=token --grant-type=client_credentials
+# Added a new client with public id 1_46zyuhkcjmgwssw8w08c08oso4sg4g48ogsw0gogo4wsw848k4, secret 3blexog1ypc04wggsc0wco84occcwo4c0c8cws0kcc080kwk8c
+#http://localhost:8080/oauth/v2/token?client_id=1_66uki0kly348kgo8g80gos8ksgo00ccc8s400k4wcg8gck0ksw&client_secret=20k068qzm8bosg0soocsk8kcg80g0c4w088sw8k404w4wcoc40&grant_type=password&username=philipp@spinnler.ch&password=1234
+
+#http://localhost:8080/oauth/v2/auth?client_id=1_66uki0kly348kgo8g80gos8ksgo00ccc8s400k4wcg8gck0ksw&response_type=code&redirect_uri=http://localhost:8080/
+#http://localhost:8080/oauth/v2/token?client_id=1_66uki0kly348kgo8g80gos8ksgo00ccc8s400k4wcg8gck0ksw&client_secret=20k068qzm8bosg0soocsk8kcg80g0c4w088sw8k404w4wcoc40&grant_type=authorization_code&redirect_uri=http://localhost:8080/&code=NTdhOTlmYTdmZDE5NmNlMjgzMTBjZjU1ZDI1MWRiYzY4NGRiNWI2ZjEyYTIzNmIyZTgwZTdiMjk3YzhkZjNiNw

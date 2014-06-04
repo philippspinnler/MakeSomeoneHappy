@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Zerodine\Bundle\OAuthServerBundle\ZerodineOAuthServerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

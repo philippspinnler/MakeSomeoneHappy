@@ -86,3 +86,21 @@ fos_rest:
     format_listener:
     view:
         view_response_listener: true
+    routing_loader:
+        include_format: false
+        default_format: json
+
+# FOS OAuthServer
+framework:
+    translator: { fallback: en }
+
+fos_oauth_server:
+    db_driver: orm       # Driver availables: orm, mongodb, or propel
+    client_class:        Zerodine\Bundle\OAuthServerBundle\Entity\Client
+    access_token_class:  Zerodine\Bundle\OAuthServerBundle\Entity\AccessToken
+    refresh_token_class: Zerodine\Bundle\OAuthServerBundle\Entity\RefreshToken
+    auth_code_class:     Zerodine\Bundle\OAuthServerBundle\Entity\AuthCode
+    service:
+        user_provider: platform.person.provider
+        options:
+            supported_scopes: user
