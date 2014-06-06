@@ -30,13 +30,13 @@ class Role implements RoleInterface
     private $role;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
-    private $persons;
+    private $users;
 
     public function __construct()
     {
-        $this->persons = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**

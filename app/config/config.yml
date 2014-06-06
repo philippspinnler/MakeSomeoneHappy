@@ -101,6 +101,6 @@ fos_oauth_server:
     refresh_token_class: Zerodine\Bundle\OAuthServerBundle\Entity\RefreshToken
     auth_code_class:     Zerodine\Bundle\OAuthServerBundle\Entity\AuthCode
     service:
-        user_provider: platform.person.provider
+        user_provider: zerodine.user.provider
         options:
             supported_scopes: user

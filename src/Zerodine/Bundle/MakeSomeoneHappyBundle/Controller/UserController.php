@@ -6,12 +6,11 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Symfony\Component\Routing\Annotation\Route;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\PersonType;
+use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User;
+use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\UserType;
 use FOS\RestBundle\Controller\Annotations\View;
 
-class PersonController extends Controller {
+class UserController extends Controller {
 
     public function loginAction(Request $request)
     {
@@ -28,7 +27,7 @@ class PersonController extends Controller {
         }
 
         return $this->render(
-            'ZerodineMakeSomeoneHappyBundle:Person:login.html.twig',
+            'ZerodineMakeSomeoneHappyBundle:User:login.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $session->get(SecurityContextInterface::LAST_USERNAME),
@@ -39,26 +38,19 @@ class PersonController extends Controller {
 
     public function registerAction(Request $request)
     {
-        $person = new Person();
+        $user = new User();
 
-        $form = $this->createForm(new PersonType(get_class(new Person())), $person);
+        $form = $this->createForm(new UserType(get_class(new User())), $user);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            /*$factory = $this->get('security.encoder_factory');
-
-            $encoder = $factory->getEncoder($user);
-            $password = $encoder->encodePassword('ryanpass', $user->getSalt());
-
-            $person*/
-
             $em = $this->getDoctrine()->getManager();
-            $em->persist($person);
+            $em->persist($user);
             $em->flush();
         }
 
-        return $this->render('ZerodineMakeSomeoneHappyBundle:Person:register.html.twig', array(
+        return $this->render('ZerodineMakeSomeoneHappyBundle:User:register.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -66,7 +58,7 @@ class PersonController extends Controller {
     public function indexAction() {
         $user = $this->container->get('security.context')->getToken()->getUser();
 
-        return $this->render('ZerodineMakeSomeoneHappyBundle:Person:index.html.twig', array(
+        return $this->render('ZerodineMakeSomeoneHappyBundle:User:index.html.twig', array(
         ));
     }
 
@@ -74,28 +66,20 @@ class PersonController extends Controller {
      * @return array
      * @View()
      */
-    public function getPersonsAction() {
-        $persons = $this->getDoctrine()->getRepository('ZerodineMakeSomeoneHappyBundle:Person')
+    public function getUsersAction() {
+        $users = $this->getDoctrine()->getRepository('ZerodineMakeSomeoneHappyBundle:User')
             ->findAll();
 
-        return array('persons' => $persons);
+        return array('users' => $users);
     }
 
     /**
-     * @param Person $person
+     * @param User $user
      * @return array
      * @View()
      */
-    public function getPersonAction(Person $person) {
-        // generate oauth client
+    public function getUserAction(User $user) {
 
-        /*$clientManager = $this->get('fos_oauth_server.client_manager.default');
-        $client = $clientManager->createClient();
-        $client->setRedirectUris(array('http://localhost/work/makesomeonehappy_ui'));
-        $client->setAllowedGrantTypes(array('token', 'authorization_code'));
-        $clientManager->updateClient($client);
-        */
-
-        return array('person' => $person);
+        return array('user' => $user);
     }
 }

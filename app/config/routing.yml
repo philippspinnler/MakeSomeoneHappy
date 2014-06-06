@@ -4,12 +4,12 @@ fos_oauth_server_token:
 fos_oauth_server_authorize:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
-users:
+_makesomeonehappy_users:
     type:     rest
     prefix: /api
-    resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\PersonController
+    resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\UserController
 
-circles:
+_makesomeonehappy_circles:
     type:     rest
     prefix: /api
     resource: Zerodine\Bundle\MakeSomeoneHappyBundle\Controller\CircleController
@@ -22,15 +22,15 @@ logout:
 
 login:
     path:   /login
-    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:login }
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:User:login }
 
 register:
     path:   /register
-    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:register }
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:User:register }
 
 index:
     path:   /
-    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:Person:index }
+    defaults: { _controller: ZerodineMakeSomeoneHappyBundle:User:index }
 
 # /usr/bin/php /Users/philipp/workspace/work/makesomeonehappy/app/console zerodine:oauth-server:client:create --redirect-uri=http://localhost:8080/ --grant-type=authorization_code --grant-type=password --grant-type=refresh_token --grant-type=token --grant-type=client_credentials
 # Added a new client with public id 1_46zyuhkcjmgwssw8w08c08oso4sg4g48ogsw0gogo4wsw848k4, secret 3blexog1ypc04wggsc0wco84occcwo4c0c8cws0kcc080kwk8c

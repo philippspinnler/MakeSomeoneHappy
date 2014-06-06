@@ -17,10 +17,10 @@ class Wish {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person")
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    protected $person;
+    protected $user;
 
     /**
      * @ORM\Column(type="string")
@@ -44,19 +44,19 @@ class Wish {
     }
 
     /**
-     * @param mixed $person
+     * @param mixed $user
      */
-    public function setPerson($person)
+    public function setUser($user)
     {
-        $this->person = $person;
+        $this->user = $user;
     }
 
     /**
      * @return mixed
      */
-    public function getPerson()
+    public function getUser()
     {
-        return $this->person;
+        return $this->user;
     }
 
     /**

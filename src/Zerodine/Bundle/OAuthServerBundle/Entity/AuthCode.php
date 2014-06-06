@@ -26,7 +26,7 @@ class AuthCode extends BaseAuthCode
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person")
+     * @ORM\ManyToOne(targetEntity="Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User")
      */
-    protected $person;
+    protected $user;
 }

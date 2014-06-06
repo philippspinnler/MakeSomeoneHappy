@@ -4,7 +4,6 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -13,12 +12,12 @@ use JMS\Serializer\Annotation\Exclude;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="person")
+ * @ORM\Table(name="user")
  * @UniqueEntity(fields="email", message="Email already taken")
  * @ORM\HasLifecycleCallbacks()
  * @ExclusionPolicy("none")
  */
-class Person implements AdvancedUserInterface, \Serializable {
+class User implements AdvancedUserInterface, \Serializable {
     /**
      * @ORM\Column(type="guid")
      * @ORM\Id
@@ -51,12 +50,12 @@ class Person implements AdvancedUserInterface, \Serializable {
     protected $keyPrivate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Circle", mappedBy="persons")
+     * @ORM\ManyToMany(targetEntity="Circle", mappedBy="users")
      */
     protected $circles;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Role", inversedBy="persons")
+     * @ORM\ManyToMany(targetEntity="Role", inversedBy="users")
      *
      */
     protected $roles;
@@ -184,7 +183,6 @@ class Person implements AdvancedUserInterface, \Serializable {
      */
     public function getRoles()
     {
-        $roles = $this->roles->toArray();
         return $this->roles->toArray();
     }
 

@@ -4,9 +4,9 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\EventListener;
 
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person;
+use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User;
 
-class PersonSubscriber implements EventSubscriber
+class UserSubscriber implements EventSubscriber
 {
     protected $encoder;
 
@@ -23,26 +23,26 @@ class PersonSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        $person = $args->getObject();
+        $user = $args->getObject();
 
-        if ($person instanceof Person) {
+        if ($user instanceof User) {
 
             // Create the keypair
             $res=openssl_pkey_new();
 
             // Get private key
-            openssl_pkey_export($res, $privkey, $person->getPlainPassword());
+            openssl_pkey_export($res, $privkey, $user->getPlainPassword());
 
             // Get public key
             $pubkey=openssl_pkey_get_details($res);
             $pubkey=$pubkey["key"];
 
-            $person->setKeyPrivate($privkey);
-            $person->setKeyPublic($pubkey);
+            $user->setKeyPrivate($privkey);
+            $user->setKeyPublic($pubkey);
 
-            $encoder = $this->encoder->getEncoder($person);
-            $person->setPassword($encoder->encodePassword($person->getPlainPassword(), $person->getSalt()));
-            $person->eraseCredentials();
+            $encoder = $this->encoder->getEncoder($user);
+            $user->setPassword($encoder->encodePassword($user->getPlainPassword(), $user->getSalt()));
+            $user->eraseCredentials();
         }
     }
 

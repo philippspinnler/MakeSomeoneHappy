@@ -12,8 +12,8 @@ class CircleType extends AbstractType
             ->add('name')
             ->add('alias')
             ->add('description')
-            ->add('persons', 'entity', array(
-                'class' => 'Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person',
+            ->add('users', 'entity', array(
+                'class' => 'Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User',
                 'property' => 'name',
                 'multiple' => true,
                 'expanded' => true

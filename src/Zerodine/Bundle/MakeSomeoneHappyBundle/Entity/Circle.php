@@ -36,12 +36,12 @@ class Circle {
     protected $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", inversedBy="circles")
+     * @ORM\ManyToMany(targetEntity="User", inversedBy="circles")
      */
-    protected $persons;
+    protected $users;
 
     public function __construct() {
-        $this->persons = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     /**
@@ -111,8 +111,8 @@ class Circle {
     /**
      * @return mixed
      */
-    public function getPersons()
+    public function getUsers()
     {
-        return $this->persons;
+        return $this->users;
     }
 }

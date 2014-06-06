@@ -1,23 +1,23 @@
 services:
-    person.subscriber:
-        class: Zerodine\Bundle\MakeSomeoneHappyBundle\EventListener\PersonSubscriber
+    user.subscriber:
+        class: Zerodine\Bundle\MakeSomeoneHappyBundle\EventListener\UserSubscriber
         calls:
             - [ setEncoderFactory, [@security.encoder_factory] ]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
 
-    platform.person.manager:
+    zerodine.user.manager:
         class: "Doctrine\ORM\EntityManager"
-        arguments: [ "%platform.entity.person.class%" ]
+        arguments: [ "%zerodine.entity.user.class%" ]
         factory_service:  doctrine
         factory_method: getManagerForClass
 
-    platform.person.repository:
-        class: "Zerodine\Bundle\MakeSomeoneHappyBundle\Repository\PersonRepository"
-        arguments: [ "%platform.entity.person.class%" ]
-        factory_service:  platform.person.manager
+    zerodine.user.repository:
+        class: "Zerodine\Bundle\MakeSomeoneHappyBundle\Repository\UserRepository"
+        arguments: [ "%zerodine.entity.user.class%" ]
+        factory_service:  zerodine.user.manager
         factory_method: getRepository
 
-    platform.person.provider:
-        class: "%platform.person.provider.class%"
-        arguments: [ "@platform.person.repository" ]
+    zerodine.user.provider:
+        class: "%zerodine.user.provider.class%"
+        arguments: [ "@zerodine.user.repository" ]

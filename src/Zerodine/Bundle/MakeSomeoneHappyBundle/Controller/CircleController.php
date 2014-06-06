@@ -4,12 +4,6 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Controller;
 
 use FOS\RestBundle\Controller\Annotations\View;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Circle;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\CircleType;
-use Symfony\Component\HttpFoundation\Request;
-use Zerodine\Bundle\MakeSomeoneHappyBundle\KernelListener\CircleListenerInterface;
 
 class CircleController extends Controller
 {

@@ -4,6 +4,7 @@ namespace Zerodine\Bundle\OAuthServerBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
 use Doctrine\ORM\Mapping as ORM;
+use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -25,7 +26,7 @@ class AccessToken extends BaseAccessToken
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\Person")
+     * @ORM\ManyToOne(targetEntity="Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User")
      */
-    protected $person;
+    protected $user;
 }

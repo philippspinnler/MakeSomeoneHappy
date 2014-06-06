@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: philipp
- * Date: 03/06/14
- * Time: 11:55
- */
 
 namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Provider;
 
@@ -16,7 +10,7 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\NoResultException;
 
-class PersonProvider implements UserProviderInterface
+class UserProvider implements UserProviderInterface
 {
     protected $userRepository;
 
