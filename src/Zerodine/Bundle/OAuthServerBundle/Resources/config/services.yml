@@ -1,0 +1,5 @@
+services:
+    accesstoken.subscriber:
+        class: Zerodine\Bundle\OAuthServerBundle\EventListener\AccessTokenSubscriber
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
