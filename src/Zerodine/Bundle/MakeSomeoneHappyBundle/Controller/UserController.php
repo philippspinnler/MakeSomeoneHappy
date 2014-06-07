@@ -5,6 +5,7 @@ namespace Zerodine\Bundle\MakeSomeoneHappyBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Entity\User;
 use Zerodine\Bundle\MakeSomeoneHappyBundle\Form\Type\UserType;
@@ -60,6 +61,26 @@ class UserController extends Controller {
 
         return $this->render('ZerodineMakeSomeoneHappyBundle:User:index.html.twig', array(
         ));
+    }
+
+    /**
+     * @return array
+     * @View()
+     */
+    // Only neede if browser makes preflight OPTIONS call
+    /*public function optionsUsersAction()
+    {
+        $response = new Response();
+        $response->headers->set('Allow', 'OPTIONS, GET, PATCH, POST');
+        return $response;
+    }*/
+
+    /**
+     * @param $user
+     * @View()
+     */
+    public function postUserAction() {
+
     }
 
     /**

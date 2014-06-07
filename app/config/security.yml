@@ -47,5 +47,7 @@ security:
             anonymous: true
 
     access_control:
-        - { path: ^/oauth/vs/tokeninfos, roles: [ IS_AUTHENTICATED_ANONYMOUSLY]}
+        - { path: ^/oauth/vs/tokeninfos, roles: [ IS_AUTHENTICATED_ANONYMOUSLY] }
+        #- { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        #- { path: ^/api, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ], methods: [OPTIONS] }
         - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }

@@ -21,3 +21,8 @@ services:
     zerodine.user.provider:
         class: "%zerodine.user.provider.class%"
         arguments: [ "@zerodine.user.repository" ]
+
+    zerodine.cors_listener:
+        class: Zerodine\Bundle\MakeSomeoneHappyBundle\EventListener\CorsListener
+        tags:
+           - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
